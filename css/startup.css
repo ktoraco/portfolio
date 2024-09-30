@@ -1,0 +1,183 @@
+/* ここから起動画面 */
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+.startup-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+#sky {
+  position: relative; /* 飛行機の位置を相対的に管理 */
+  overflow: hidden; /* 飛行機が範囲を超えないようにする */
+}
+
+.bgSkySunset {
+  background: linear-gradient(to bottom, rgba(90, 155, 231, 1) 0%, rgba(193, 151, 120, 1) 49%, rgba(194, 166, 160, 1) 88%, rgba(135, 136, 170, 1) 100%);
+  min-height: 100vh; /* 背景が画面いっぱいまで広がる */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.bgSkyNight {
+  background: linear-gradient(to bottom, rgba(49, 76, 145, 0.9) 0%, rgba(114, 117, 174, 0.9) 49%, rgba(149, 118, 111, 0.9) 88%, rgba(99, 101, 128, 0.9) 100%);
+  min-height: 100vh; /* 背景が画面いっぱいまで広がる */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.bgSkyEvening {
+  background: linear-gradient(to bottom, rgba(42, 84, 234, 0.8) 0%, rgba(80, 159, 232, 0.8) 61%, rgba(209, 249, 246, 0.8) 100%);
+  min-height: 100vh; /* 背景が画面いっぱいまで広がる */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.logo-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  margin-bottom: 100px;
+}
+
+.startup-logo {
+  width: 224px;
+  height: 224px;
+}
+
+.startup-font {
+  width: 215px;
+  height: 157px;
+}
+
+.startup-town-wrap {
+  width: 5700px;
+  height: 300px;
+  position: relative;
+  display: flex;
+}
+
+.startup-town {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%); /* 中央に揃える */
+}
+
+/* ここからindexページ */
+/* ロゴ画像のフェードインのアニメーション */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* 要素をフェードインさせるためのクラス */
+.fade-in {
+  opacity: 0; /* 初期状態は透明 */
+  animation: fadeIn 1.5s ease-in forwards; /* 2秒かけてフェードイン */
+}
+
+/* 星空の背景のスタイル */
+.stars {
+  position: relative;
+  width: 100%; /* 星空の横幅 */
+  height: 100vh; /* 星空の縦幅 */
+  overflow: hidden; /* 星が枠外にはみ出すのを防ぐ */
+}
+
+/* 星のスタイル */
+.star {
+  position: absolute;
+  display: block;
+  background-color: #fff; /* 星の色 */
+  border-radius: 50%;
+  box-shadow: 0 0 4px 2px rgba(#fff, 0.2); /* 星の影 */
+  opacity: 0;
+  animation: twinkle 5s infinite;
+}
+
+/* 星がキラキラ光るアニメーション */
+@keyframes twinkle {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+/* 飛行機のスタイル */
+.airplane {
+  position: absolute;
+  width: 24px; /* 飛行機の幅 */
+  height: auto;
+  transition: transform 15s linear, opacity 2s ease-out; /* 15秒で移動、2秒でフェードアウト */
+  transform-origin: center center; /* 回転の中心を調整 */
+  opacity: 1; /* 初期の不透明度 */
+  animation: blink 1s infinite; /* 点滅アニメーション */
+}
+
+/* 画像がフェードインしてくるアニメーション */
+@keyframes blink {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 12px rgba(255, 239, 198, 0.4)); /* 明るい赤い光の効果 */
+    opacity: 0.9; /* 明るさを調整 */
+  }
+  50% {
+    filter: drop-shadow(0 0 12px rgba(255, 239, 198, 1)); /* より明るくなる */
+    opacity: 1; /* 明るさを調整 */
+  }
+}
+
+/* Please touch me!のメッセージ */
+.touchMessage {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 32px;
+  height: 40px; /* 初期の高さを設定 */
+  opacity: 0; /* 初期状態は透明 */
+  transition: opacity 0.5s ease; /* フェードインのトランジション */
+}
+
+/* 点滅 */
+@keyframes blinking {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+
+/* 要素にアニメーションを適用 */
+.blink {
+  animation: blinking 1.5s ease-in-out infinite alternate;
+}
