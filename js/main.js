@@ -1,16 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // const heroimgs = ["../images/heroImg/1.jpg", "../images/heroImg/2.jpg", "../images/heroImg/3.jpg", "../images/heroImg/4.jpg", "../images/heroImg/5.jpg", "../images/heroImg/6.jpg"];
-
-  // const randomImage = heroimgs[Math.floor(Math.random() * heroimgs.length)];
-  // const heroImgElement = document.querySelector(".heroImg");
-
-  // if (heroImgElement) {
-  //   heroImgElement.style.backgroundImage = `url(${randomImage})`;
-  //   heroImgElement.style.backgroundSize = "cover";
-  //   heroImgElement.style.backgroundPosition = "center";
-  //   heroImgElement.style.height = "240px";
-  // }
-
   // header.htmlの読み込み
   fetch("header.html")
     .then((response) => response.text())
@@ -33,7 +21,11 @@ document.addEventListener("DOMContentLoaded", function () {
       // ドキュメント全体にクリックイベントを追加
       document.addEventListener("click", function (event) {
         if (isMenuOpen && !menu.contains(event.target) && event.target !== menuToggle) {
-          menu.classList.remove("show"); // メニューを閉じる
+          menu.classList.add("hide"); // メニューを閉じる
+          setTimeout(() => {
+            menu.classList.remove("show", "hide"); // アニメーション後にクラスを削除
+            menu.style.display = "none"; // メニューを非表示にする
+          }, 300); // アニメーションの時間に合わせて調整
           isMenuOpen = false; // メニューの状態を更新
         }
       });
@@ -51,11 +43,9 @@ document.addEventListener("DOMContentLoaded", function () {
   setTimeout(() => {
     targetMessage.style.opacity = "1";
     targetMessage.classList.add("blink");
-  }, 3000);
+  }, 5000); // 表示までの時間を5秒に変更
 
   document.addEventListener("DOMContentLoaded", function () {
-    // 既存のコード...
-
     // iframeがクリックされたときのイベントリスナーを追加
     window.addEventListener("iframeClicked", function () {
       const menu = document.getElementById("menu");

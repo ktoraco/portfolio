@@ -47,7 +47,7 @@ ol {
   gap: 40px;
   max-width: 989px;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 0 24px;
   padding-bottom: 2rem;
   color: #525252;
 }
@@ -60,7 +60,12 @@ ol {
 /* ハンバーガーメニューのcss */
 #menu {
   display: none; /* 初期状態は非表示 */
+  visibility: hidden; /* 初期状態で非表示に */
+  opacity: 0; /* 初期状態で透明に */
+  transform: scale(0); /* 初期状態で縮小に */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* アニメーションの設定 */
 }
+
 #menu.show {
   background-color: #f5f5f5;
   padding: 16px;
@@ -74,6 +79,16 @@ ol {
   right: 0;
   margin-top: 16px;
   z-index: 10;
+  visibility: visible; /* 表示 */
+  opacity: 1; /* 表示時は不透明 */
+  transform: scale(1); /* 表示時は元のサイズ */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* アニメーションの設定 */
+}
+
+#menu.hide {
+  opacity: 0; /* 非表示時は透明 */
+  transform: scale(0); /* 非表示時は縮小 */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* アニメーションの設定 */
 }
 
 #menu.show li {
@@ -95,6 +110,24 @@ ol {
 }
 
 /* ここからaboutページ */
+.heroWindow {
+  padding-bottom: 24px;
+}
+
+.iframe-container {
+  width: calc(100% - 32px); /* 余白を確保 */
+  height: 220px; /* iframeの高さ */
+  border-radius: 8px; /* 角を丸くする */
+  overflow: hidden; /* はみ出した部分を隠す */
+  margin: 0 16px; /* 左右の余白 */
+}
+
+.hero-iframe {
+  width: 100%;
+  height: 100%;
+  border: none; /* 枠線を消す */
+}
+
 .heroImg {
   border-radius: 4px;
 }
@@ -344,7 +377,7 @@ ol {
 
 /* ここからheader */
 .headerStyle {
-  padding: 8px 0;
+  padding: 8px 16px;
   display: flex;
   justify-content: space-between;
 }
@@ -364,4 +397,31 @@ img.kichitaText {
   gap: 8px;
   align-items: center;
   position: relative;
+}
+
+.hamburger-menu {
+  width: 40px;
+  height: 40px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 12px;
+  align-items: center;
+}
+
+.line {
+  width: 14px;
+  height: 2px;
+  background-color: #9d9d9d;
+  border-radius: 2px;
+}
+
+.hamburger-menu:hover {
+  background-color: #e9effc;
+}
+
+.hamburger-menu:active {
+  background-color: #ae9afe;
 }
