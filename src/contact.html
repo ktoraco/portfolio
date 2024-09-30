@@ -4,7 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="../js/main.js"></script>
+    <body>
     <div class="container">
+      <div id="header-placeholder"></div>
+      <section class="head-text">
+        <h2>Contact</h2>
+        <p>お仕事の依頼やご相談がございましたら、<br>お気軽にお問い合わせください。</p>
+      </section>
 
+    <section class="contact-input-wrap">
+      <label for="name">お名前</label>
+      <input type="text" placeholder="太郎">
+
+      <label for="email">email</label>
+      <input type="email" placeholder="sample@example.com">
+
+      <label for="title">件名</label>
+      <input type="text" placeholder="件名">
+
+      <label for="message">本文</label>
+      <textarea name="message" id="message" placeholder="内容"></textarea>
+
+      <button class="button-submit" type="submit">送信</button>
+    </section>
+    <div id="footer-placeholder"></div>
     </div>
+    </body>
 </html>

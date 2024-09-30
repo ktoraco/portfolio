@@ -1,14 +1,21 @@
 <section id="header" class="headerStyle">
-  <div class="header-left">
+  <a href="index.html" class="header-left">
     <img class="kichitaImg" src="../images/header/Kichita_logo.svg" alt="KichitaLogo" />
     <img class="kichitaText" src="../images/header/Kichita Design_text.svg" alt="Kichita Design" />
-  </div>
+  </a>
   <div class="header-right">
+    <!-- ここにposition: relative;を追加 -->
     <div id="theme-toggle">
-      <img src="../images/header/theme-night.svg" alt="" />
+      <img src="../images/header/theme-night.svg" alt="theme-toggle" />
     </div>
-    <div id="menu-toggle"><img src="../images/header/hamberger.svg" alt="" /></div>
+    <div id="menu-toggle"><img src="../images/header/hamberger.svg" alt="hambergerMenu" /></div>
+    <ul id="menu" class="hidden">
+      <!-- menuの位置を調整 -->
+      <li><a href="index.html">Top</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="works.html">Works</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
   </div>
 </section>
-
 <!-- ライブプレビューだとabout.htmlで読み込めない。どうすればいい？ブラウザのソースにheader.htmlが表示されない。 -->
