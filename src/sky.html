@@ -15,7 +15,7 @@
     </div>
     <script>
       document.addEventListener("click", function () {
-        window.parent.document.dispatchEvent(new Event("iframeClicked"));
+        window.parent.postMessage("iframeClicked", "*");
       });
     </script>
   </body>

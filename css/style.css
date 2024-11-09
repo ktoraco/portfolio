@@ -44,12 +44,21 @@ ol {
 .container {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 28px;
   max-width: 989px;
   margin: 0 auto;
   padding: 0 24px;
   padding-bottom: 2rem;
+  padding-top: 1rem;
   color: #525252;
+  min-height: calc(100vh - 56px); /* ヘッダーの高さを考慮 */
+}
+
+@media (min-width: 768px) {
+  .container {
+    gap: 40px;
+    padding-top: 2rem;
+  }
 }
 
 /* 全ページ共通 */
@@ -57,61 +66,137 @@ ol {
   height: 56px;
 }
 
+.heading-text {
+  font-weight: 600;
+  font-size: 20px;
+}
+
 /* ハンバーガーメニューのcss */
 #menu {
-  display: none; /* 初期状態は非表示 */
-  visibility: hidden; /* 初期状態で非表示に */
-  opacity: 0; /* 初期状態で透明に */
-  transform: scale(0); /* 初期状態で縮小に */
-  transition: opacity 0.3s ease, transform 0.3s ease; /* アニメーションの設定 */
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  transform: scale(0) translate(0, 100%); /* 初期状態を右下にオフセット */
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 #menu.show {
   background-color: #f5f5f5;
-  padding: 16px;
   width: 160px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
   position: absolute;
   top: 99%;
   right: 0;
   margin-top: 16px;
   z-index: 10;
-  visibility: visible; /* 表示 */
-  opacity: 1; /* 表示時は不透明 */
-  transform: scale(1); /* 表示時は元のサイズ */
-  transition: opacity 0.3s ease, transform 0.3s ease; /* アニメーションの設定 */
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1) translate(0, 0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  border: 1px solid #e0e0e0;
 }
 
 #menu.hide {
   opacity: 0; /* 非表示時は透明 */
   transform: scale(0); /* 非表示時は縮小 */
-  transition: opacity 0.3s ease, transform 0.3s ease; /* アニメーションの設定 */
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 #menu.show li {
-  font-weight: 600;
+  font-weight: 400;
   font-size: 16px;
   color: #525252;
 }
 
-#menu.show li::active {
+#menu.show a:hover {
   background-color: #d9f8ff;
 }
 
-#menu.show li::hover {
-  background-color: #d9f8ff;
+#menu.show a:active {
+  background-color: #ae9afe;
 }
 
 #menu a {
   display: block;
+  padding: 10px 16px;
+  color: #525252;
+  text-decoration: none;
+}
+
+/* ダークモードのスタイル */
+body.dark-mode {
+  background-color: #272727;
+  color: #ffffff;
+}
+#menu.show.dark-mode {
+  background-color: #1e1e1e;
+  border: solid 1px #595652;
+}
+#menu.show.dark-mode li {
+  font-weight: 400;
+  color: #fff0df;
+}
+
+#menu.dark-mode a {
+  display: block;
+  color: #dddddd;
+}
+
+#menu.show.dark-mode a:hover {
+  background-color: #525252;
+  color: #ffffff;
+}
+
+#menu.show.dark-mode a:active {
+  background-color: #ae9afe;
+}
+
+#header-placeholder.dark-mode {
+  background-color: #1e1e1e;
+}
+
+.hamburger-menu.dark-mode {
+  background-color: #272727;
+  border: 1px solid #808080;
+}
+.hamburger-menu.dark-mode:hover {
+  background-color: #525252;
+}
+.hamburger-menu.dark-mode:active {
+  background-color: #ae9afe;
+}
+.hamburger-menu.dark-mode:active .line {
+  background-color: #ffffff;
+}
+
+.footerStyle.dark-mode {
+  background-color: #1e1e1e;
+}
+
+.container.dark-mode {
+  color: #ffffff;
+}
+
+.head-text.dark-mode {
+  color: #ffffff;
+}
+.skills li.dark-mode {
+  background-color: #525252;
+  color: #ffffff;
+}
+.work-tag.dark-mode p {
+  background-color: #5a5a5a;
 }
 
 /* ここからaboutページ */
 .heroWindow {
-  padding-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  max-width: 989px;
+  margin: 16px auto;
 }
 
 .iframe-container {
@@ -138,12 +223,24 @@ ol {
   border-radius: 8px;
 }
 
+.experience-timeline-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 12px;
+}
+
+.experience-timeline-year {
+  font-weight: 600;
+  padding-right: 16px;
+}
+
 .profile {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  min-height: 300px; /* 必要に応じて調整 */
+  min-height: 300px;
 }
 
 .myName {
@@ -151,20 +248,14 @@ ol {
 }
 
 .profImg {
-  max-width: 120px;
-  height: 120px; /* 必要に応じて調整 */
-}
-
-.heroWindow {
-  position: relative;
-  overflow: hidden;
-  border-radius: 8px; /* 角を丸くする */
+  max-width: 96px;
+  height: 96px;
 }
 
 .heroWindow iframe {
-  width: 100%; /* 幅を100%に設定 */
-  height: 220px; /* 高さを240pxに設定 */
-  border: none; /* 枠線を消す */
+  width: 100%;
+  height: 220px;
+  border: none;
 }
 
 .skills ul {
@@ -172,7 +263,7 @@ ol {
   flex-direction: row;
   gap: 12px;
   flex-wrap: wrap;
-  padding-top: 16px;
+  padding-top: 12px;
 }
 
 .skills li {
@@ -201,8 +292,8 @@ ol {
 /* 大きい画面の場合は4列に変更 */
 @media (min-width: 768px) {
   #works-wrap {
-    grid-template-columns: repeat(4, 1fr); /* 4列に変更 */
-    gap: 16px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 48px 16px;
   }
 
   .work-title {
@@ -223,6 +314,7 @@ ol {
   text-align: center;
   box-sizing: border-box;
   max-width: 400px;
+  margin: 0 auto;
 }
 
 .works-item img {
@@ -243,7 +335,15 @@ ol {
   text-align: left;
 }
 
-/* ここからContact */
+/*ここからcontact*/
+.contact-email {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  padding-top: 24px;
+}
+
+/* ここからContact_old */
 .contact-input-wrap {
   display: flex;
   flex-direction: column;
@@ -279,7 +379,7 @@ ol {
 .head-text {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 16px;
   color: #525252;
   text-align: center;
 }
@@ -374,12 +474,17 @@ ol {
   color: #adadad;
   text-align: center;
 }
+#footer-placeholder {
+  margin-top: auto; /* フッターを下に押し下げる */
+}
 
 /* ここからheader */
 .headerStyle {
   padding: 8px 16px;
   display: flex;
   justify-content: space-between;
+  max-width: 989px;
+  margin: 0 auto;
 }
 
 .header-left {
@@ -402,13 +507,14 @@ img.kichitaText {
 .hamburger-menu {
   width: 40px;
   height: 40px;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
   border-radius: 4px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   padding: 12px;
   align-items: center;
+  border: 1px solid #e1dddd;
 }
 
 .line {
