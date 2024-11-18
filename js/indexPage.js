@@ -2,6 +2,10 @@
 window.addEventListener("DOMContentLoaded", () => {
   // 星を表示するための親要素を取得
   const stars = document.querySelector(".stars");
+  if (!stars) {
+    console.log("まだ星が出る時間ではないようです。");
+    return; // 処理を中断
+  }
 
   // 星を生成する関数
   const createStar = () => {
@@ -60,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //飛行機に関するコード
 document.addEventListener("DOMContentLoaded", function () {
-  const airplaneImgSrc = "../images/startup/airPlane1.png";
+  const airplaneImgSrc = "../images/startup/airPlane2.png";
   const maxAirplanes = 3; // 同時に存在する最大の飛行機の数
   let currentAirplanes = 0;
 
@@ -74,28 +78,37 @@ document.addEventListener("DOMContentLoaded", function () {
     currentAirplanes++; // 飛行機を追加
 
     const startPosition = Math.random() < 0.5 ? "left" : "right";
-    const startOffset = Math.random() * 300; // 上端から300px以内
+    const startOffset = Math.random() * (window.innerHeight - 300); // 上端から300px以内
 
     // 向きの調整
     if (startPosition === "right") {
       airplane.style.transform = "rotate(180deg)"; // 右からの場合は180°回転
-      airplane.style.left = "-24px";
+      airplane.style.left = "-24px"; // 画面外からスタート
       airplane.style.top = `${startOffset}px`;
-      airplane.style.transition = `left 15s linear`;
+      airplane.style.transition = `left 15s linear, opacity 2s ease-out`; // 移動とフェードアウトのトランジション
       setTimeout(() => {
-        airplane.style.left = `${window.innerWidth + 24}px`;
+        airplane.style.left = `${window.innerWidth + 24}px`; // 画面外に移動
       }, 0);
     } else {
       airplane.style.transform = "none"; // 左からの場合は回転なし
-      airplane.style.right = "-24px";
+      airplane.style.left = `${window.innerWidth + 24}px`; // 画面外からスタート
       airplane.style.top = `${startOffset}px`;
-      airplane.style.zIndex = "5"; // 飛行機の z-index を設定
-      airplane.style.transition = `right 15s linear`;
+      airplane.style.transition = `left 15s linear, opacity 2s ease-out`; // 移動とフェードアウトのトランジション
       setTimeout(() => {
-        airplane.style.right = `${window.innerWidth + 24}px`;
+        airplane.style.left = `-24px`; // 画面外に移動
       }, 0);
     }
 
+    // 飛行機が12秒後に消える処理
+    setTimeout(() => {
+      airplane.style.opacity = "0";
+      setTimeout(() => {
+        airplane.remove();
+        currentAirplanes--;
+      }, 2000); // フェードアウトの時間に合わせて削除
+    }, 12000); // １2秒後に消える処理を開始
+
+    // transitionendイベントリスナーを一度だけ追加
     airplane.addEventListener("transitionend", () => {
       const skyElement = document.getElementById("sky");
       const skyRect = skyElement.getBoundingClientRect();
@@ -103,10 +116,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // 飛行機がskyの領域を超えた場合
       if (airplaneRect.right < skyRect.left || airplaneRect.left > skyRect.right) {
-        setTimeout(() => {
-          airplane.remove();
-          currentAirplanes--; // 飛行機が削除されたらカウントを減らす
-        }, 10); // 0.01秒後に削除
+        airplane.remove();
+        currentAirplanes--;
       }
     });
   }
@@ -115,5 +126,24 @@ document.addEventListener("DOMContentLoaded", function () {
   createAirplane();
   setInterval(() => {
     createAirplane();
-  }, 8000); // 8秒ごとに飛行機を生成
+  }, 8000);
+
+  // 3秒経つとPlease touch meの文字が現れる
+  const targetMessage = document.querySelector(".touchMessage");
+  setTimeout(() => {
+    if (targetMessage) {
+      targetMessage.style.opacity = "1";
+      targetMessage.classList.add("blink");
+    }
+  }, 5000);
+
+  document.addEventListener("DOMContentLoaded", function () {
+    // iframeがクリックされたときのイベントリスナーを追加
+    window.addEventListener("iframeClicked", function () {
+      const menu = document.getElementById("menu");
+      if (menu.classList.contains("show")) {
+        menu.classList.remove("show"); // メニューを閉じる
+      }
+    });
+  });
 });

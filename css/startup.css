@@ -139,21 +139,19 @@ body {
   width: 24px; /* 飛行機の幅 */
   height: auto;
   transition: transform 15s linear, opacity 2s ease-out; /* 15秒で移動、2秒でフェードアウト */
-  transform-origin: center center; /* 回転の中心を調整 */
-  opacity: 1; /* 初期の不透明度 */
-  animation: blink 1s infinite; /* 点滅アニメーション */
+  transform-origin: center center;
+  opacity: 1;
+  animation: blink 1s infinite;
 }
 
-/* 画像がフェードインしてくるアニメーション */
-@keyframes blink {
-  0%,
-  100% {
-    filter: drop-shadow(0 0 12px rgba(255, 239, 198, 0.4)); /* 明るい赤い光の効果 */
-    opacity: 0.9; /* 明るさを調整 */
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
   }
-  50% {
-    filter: drop-shadow(0 0 12px rgba(255, 239, 198, 1)); /* より明るくなる */
-    opacity: 1; /* 明るさを調整 */
+  100% {
+    opacity: 0;
+    transform: translateY(20px);
   }
 }
 
