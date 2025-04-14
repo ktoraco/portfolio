@@ -305,6 +305,18 @@ body.dark-mode {
   #works-wrap {
     grid-template-columns: repeat(1, 1fr); /* 1列に変更 */
   }
+
+  .favorites ul {
+    flex-wrap: wrap; /* スキルタグを折り返し表示 */
+  }
+
+  .skills li {
+    margin-bottom: 8px; /* タグ間の縦方向の余白 */
+  }
+
+  .work-title {
+    font-size: 18px; /* スマホでのタイトルサイズ調整 */
+  }
 }
 
 .works-item {
@@ -313,17 +325,22 @@ body.dark-mode {
   gap: 12px;
   text-align: center;
   box-sizing: border-box;
+  width: 100%; /* 幅を100%に変更 */
   max-width: 400px;
   margin: 0 auto;
 }
 
 .works-item img {
   border-radius: 8px;
+  width: 100%; /* 画像の幅を親要素に合わせる */
+  height: auto; /* 高さは自動調整 */
+  object-fit: cover; /* アスペクト比を保ちながら表示 */
 }
 
 .work-title {
   font-weight: 600;
   font-size: 20px;
+  word-break: break-word; /* 長い単語も折り返す */
 }
 
 .work-desc {
@@ -333,6 +350,38 @@ body.dark-mode {
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: left;
+  word-wrap: break-word; /* 長い単語も折り返す */
+}
+
+/* スキルタグのスタイル調整 */
+.favorites {
+  width: 100%; /* 親要素の幅いっぱいに広げる */
+}
+
+.favorites ul.skills {
+  display: flex;
+  flex-direction: row;
+  gap: 8px; /* タグ間の間隔を少し狭く */
+  flex-wrap: wrap; /* 常に折り返し可能に */
+  padding-top: 12px;
+  justify-content: flex-start; /* 左揃え */
+}
+
+.skills li {
+  list-style: none;
+  padding: 4px 12px; /* パディングを小さく調整 */
+  border-radius: 16px;
+  background-color: #cecec7;
+  color: #ffffff;
+  font-size: 12px; /* スマホ用に少し小さく */
+  white-space: nowrap; /* タグ内のテキストは折り返さない */
+}
+
+@media (min-width: 768px) {
+  .skills li {
+    padding: 6px 20px; /* デスクトップ用の元のパディング */
+    font-size: 14px; /* デスクトップ用の元のフォントサイズ */
+  }
 }
 
 /*ここからcontact*/
