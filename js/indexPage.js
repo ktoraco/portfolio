@@ -64,7 +64,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //飛行機に関するコード
 document.addEventListener("DOMContentLoaded", function () {
-  const airplaneImgSrc = "../images/startup/airPlane2.png";
+  // パスを修正
+  const airplaneImgSrc = window.location.pathname.includes('/src/') ? 
+                          "../images/startup/airPlane2.png" : 
+                          "images/startup/airPlane2.png";
   const maxAirplanes = 3; // 同時に存在する最大の飛行機の数
   let currentAirplanes = 0;
 

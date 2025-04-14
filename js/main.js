@@ -2,8 +2,13 @@ document.addEventListener("DOMContentLoaded", function () {
   // グローバルにisMenuOpenを定義
   let isMenuOpen = false;
 
+  // ページの場所に基づいてヘッダーのパスを決定
+  const headerPath = window.location.pathname.includes('/src/') ? 
+                     "/src/header.html" : 
+                     "/header.html";
+
   // header.htmlの読み込み
-  fetch("/src/header.html")
+  fetch(headerPath)
     .then((response) => response.text())
     .then((data) => {
       const headerPlaceholder = document.getElementById("header-placeholder");
@@ -108,8 +113,13 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
+  // ページの場所に基づいてフッターのパスを決定
+  const footerPath = window.location.pathname.includes('/src/') ? 
+                     "/src/footer.html" : 
+                     "/footer.html";
+
   // footer.htmlの読み込み
-  fetch("/src/footer.html")
+  fetch(footerPath)
     .then((response) => response.text())
     .then((data) => {
       const footerPlaceholder = document.getElementById("footer-placeholder");
