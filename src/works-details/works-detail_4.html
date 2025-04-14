@@ -6,6 +6,8 @@
     <title>Works-details</title>
     <link rel="stylesheet" href="../../css/style.css" />
     <link rel="stylesheet" href="../../css/works-detail.css" />
+    <!-- Swiperのスタイルシートを追加 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   </head>
   <body>
     <div id="header-placeholder"></div>
@@ -21,16 +23,52 @@
       </secttion>
       <section id="works-detail-wrap">
         <div class="works-detail">
-          <img src="../../images/heroImg/4.jpg" alt="test" />
-          <div class="work-detail-title">Test</div>
+          <!-- スワイパーのコンテナ -->
+          <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img src="../../images/works/work6/work6-1.png" alt="test" class="swiper-img" />
+              </div>
+              <div class="swiper-slide">
+                <img src="../../images/works/work6/work6-2.png" alt="test" class="swiper-img" />
+              </div>
+              <div class="swiper-slide"><img src="../../images/works/work6/work6-3.png alt="test" class="swiper-img" /></div>
+              <div class="swiper-slide">
+                <img src="../../images/works/work6/work6-4.png" alt="test" class="swiper-img" />
+              </div>
+              <div class="swiper-slide">
+                <img src="../../images/works/work6/work6-5.png" alt="test" class="swiper-img" />
+              </div>
+              <div class="swiper-slide">
+
+              <!-- 必要に応じて画像を追加 -->
+            </div>
+            <!-- ナビゲーションボタン -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <!-- ページネーション -->
+            <div class="swiper-pagination"></div>
+          </div>
+
+          <!-- モーダル -->
+          <div class="modal" id="imageModal">
+            <span class="close-modal">&times;</span>
+            <div class="modal-content">
+              <img id="modalImage" src="" alt="拡大画像" />
+            </div>
+          </div>
+
+          <div class="work-detail-title">Renta!(英語版)のGoogle Play Store</div>
           <div class="work-desc">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-            sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            英語版Renta!のAndroidアプリのストアデザインを担当。マーケティングチームと協力してのサイトの強みの分析から、デザインに落とし込みました。<br />ユーザー層やコンバージョン率を考慮したスクリーンショットの選定をし、アプリのインストール率向上につながるよう工夫を施しました。また、競合アプリの分析も行い、差別化ポイントを明確にした訴求を実現しました。
           </div>
         </div>
       </section>
       <div id="footer-placeholder"></div>
     </div>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="../../js/main.js"></script>
     <script src="../../js/works-detail.js"></script>
   </body>

@@ -6,6 +6,8 @@
     <title>Works-details</title>
     <link rel="stylesheet" href="../../css/style.css" />
     <link rel="stylesheet" href="../../css/works-detail.css" />
+    <!-- Swiperのスタイルシートを追加 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   </head>
   <body>
     <div id="header-placeholder"></div>
@@ -21,7 +23,41 @@
       </secttion>
       <section id="works-detail-wrap">
         <div class="works-detail">
-          <img src="../../images/heroImg/3.jpg" alt="test" />
+          <!-- スワイパーのコンテナ -->
+          <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img src="../../images/works/work3/work3-1.png" alt="test" class="swiper-img" />
+              </div>
+              <div class="swiper-slide">
+                <img src="../../images/works/work3/work3-2.png" alt="test" class="swiper-img" />
+              </div>
+              <div class="swiper-slide">
+                <img src="../../images/works/work3/work3-3.png" alt="test" class="swiper-img" />
+              </div>
+              <div class="swiper-slide">
+                <img src="../../images/works/work3/work3-4.png" alt="test" class="swiper-img" />
+              </div>
+              <div class="swiper-slide">
+                <img src="../../images/works/work3/work3-5.png" alt="test" class="swiper-img" />
+              </div>
+              <!-- 必要に応じて画像を追加 -->
+            </div>
+            <!-- ナビゲーションボタン -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <!-- ページネーション -->
+            <div class="swiper-pagination"></div>
+          </div>
+
+          <!-- モーダル -->
+          <div class="modal" id="imageModal">
+            <span class="close-modal">&times;</span>
+            <div class="modal-content">
+              <img id="modalImage" src="" alt="拡大画像" />
+            </div>
+          </div>
+
           <div class="work-detail-title">Test</div>
           <div class="work-desc">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
@@ -31,6 +67,9 @@
       </section>
       <div id="footer-placeholder"></div>
     </div>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="../../js/main.js"></script>
     <script src="../../js/works-detail.js"></script>
   </body>
