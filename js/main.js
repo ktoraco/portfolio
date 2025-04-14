@@ -42,7 +42,11 @@ document.addEventListener("DOMContentLoaded", function () {
         if (themeToggle) {
           const themeImage = themeToggle.querySelector("img");
           if (themeImage) {
-            themeImage.src = "/images/header/theme-light.svg";
+            // 相対パスで画像を指定
+            const themeLightPath = window.location.pathname.includes('/src/') ? 
+                                   "../images/header/theme-light.svg" : 
+                                   "images/header/theme-light.svg";
+            themeImage.src = themeLightPath;
           }
         }
 
@@ -82,9 +86,18 @@ document.addEventListener("DOMContentLoaded", function () {
         const isDarkModeNow = document.body.classList.toggle("dark-mode");
         localStorage.setItem("dark-mode", isDarkModeNow); // 状態をlocalStorageに保存
 
-        // 画像の切り替え
+        // 画像の切り替え - 相対パスに修正
         const themeImage = themeToggle.querySelector("img");
-        themeImage.src = isDarkModeNow ? "/images/header/theme-light.svg" : "/images/header/theme-dark.svg";
+        
+        // ページの場所に応じてパスを動的に決定
+        const themeLightPath = window.location.pathname.includes('/src/') ? 
+                               "../images/header/theme-light.svg" : 
+                               "images/header/theme-light.svg";
+        const themeDarkPath = window.location.pathname.includes('/src/') ? 
+                              "../images/header/theme-dark.svg" : 
+                              "images/header/theme-dark.svg";
+        
+        themeImage.src = isDarkModeNow ? themeLightPath : themeDarkPath;
 
         const header = document.getElementById("header-placeholder");
         const headerToggle = document.querySelector(".hamburger-menu");
