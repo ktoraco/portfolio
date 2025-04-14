@@ -29,6 +29,21 @@
         transition: transform 0.3s ease;
       }
 
+      /* ナビゲーションボタンの色をグレーに変更 */
+      .swiper-button-next,
+      .swiper-button-prev {
+        color: #525252;
+      }
+
+      /* ページネーションの色をグレーに変更 */
+      .swiper-pagination-bullet {
+        background-color: #525252;
+      }
+
+      .swiper-pagination-bullet-active {
+        background-color: #525252;
+      }
+
       /* モーダル表示用のスタイル */
       .modal {
         display: none;
@@ -115,7 +130,7 @@
           </div>
 
           <div class="work-desc">ゲームの中で本気で写真を撮るプロジェクトのサイトです。写真のあり方を考えるきっかけになればと思い、いままで現実世界で培ってきた写真のスキルと哲学を、ゲーム写真で発揮したらどうなるのか実験しています。<br />Next.jsを使用して、Vercelでホスティングしています。MicroCMSを使用して、コンテンツの管理を行っています。</div>
-          <a href="https://esna.vercel.app/">E-Snap Project</a>
+          <a class="works-detail-link" href="https://esna.vercel.app/">E-Snap Project</a>
         </div>
       </section>
       <div id="footer-placeholder"></div>
@@ -124,6 +139,28 @@
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="../../js/main.js"></script>
+
+    <!-- ヘッダーアイコンのパス修正 -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // ヘッダーが読み込まれた後に実行
+        setTimeout(() => {
+          // ヘッダー内の画像パスを修正
+          const headerImg = document.querySelector(".header-left img");
+          if (headerImg) {
+            headerImg.src = "../../images/header/Kichita Design_text.svg";
+          }
+
+          // テーマトグルアイコンのパス修正
+          const themeToggleImg = document.querySelector("#theme-toggle img");
+          if (themeToggleImg) {
+            // ダークモードの状態に応じて適切な画像を設定
+            const isDarkMode = localStorage.getItem("dark-mode") === "true";
+            themeToggleImg.src = isDarkMode ? "../../images/header/theme-light.svg" : "../../images/header/theme-dark.svg";
+          }
+        }, 100);
+      });
+    </script>
 
     <!-- スワイパーとモーダルの初期化 -->
     <script>
