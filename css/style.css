@@ -190,6 +190,13 @@ body.dark-mode {
   background-color: #5a5a5a;
 }
 
+.works-detail-link.dark-mode {
+  background-color: #525252;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: #ae9afe;
+}
+
 /* ここからaboutページ */
 .heroWindow {
   position: relative;
