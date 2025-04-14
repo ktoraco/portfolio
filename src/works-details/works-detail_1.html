@@ -5,6 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Works-details</title>
     <link rel="stylesheet" href="../../css/style.css" />
+    <!-- Swiperのスタイルシートを追加 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+      /* スワイパー用のスタイル */
+      .swiper {
+        width: 100%;
+        max-width: 600px;
+        border-radius: 8px;
+        margin: 0 auto;
+      }
+
+      .swiper-slide {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .swiper-slide img {
+        width: 100%;
+        height: auto;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      /* モーダル表示用のスタイル */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .modal-content {
+        max-width: 90%;
+        max-height: 90%;
+      }
+
+      .modal-content img {
+        width: 100%;
+        height: auto;
+        max-height: 90vh;
+        object-fit: contain;
+      }
+
+      .close-modal {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        color: white;
+        font-size: 30px;
+        cursor: pointer;
+      }
+
+      /* レスポンシブ対応 */
+      @media (max-width: 768px) {
+        .swiper {
+          max-width: 100%;
+        }
+      }
+    </style>
   </head>
   <body>
     <div id="header-placeholder"></div>
@@ -12,24 +79,116 @@
       <secttion id="works-breadcrumbs">
         <a href="../works.html" class="backBtn">Works</a>
         <p>></p>
-        <div class="work-header">Dream</div>
+        <div class="work-header">E-Snap Project</div>
         <div class="work-tag">
-          <p>2019</p>
-          <p>Photography</p>
+          <p>2025</p>
         </div>
       </secttion>
       <section id="works-detail-wrap">
         <div class="works-detail">
-          <img src="../../images/heroImg/1.jpg" alt="test" />
-          <div class="work-detail-title">Test</div>
-          <div class="work-desc">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-            sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          <!-- スワイパーのコンテナ -->
+          <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+              <!-- スライド1 -->
+              <div class="swiper-slide">
+                <img src="../../images/heroImg/1.jpg" alt="E-Snap Project画像1" class="swiper-img" />
+              </div>
+              <!-- スライド2 -->
+              <div class="swiper-slide">
+                <img src="../../images/heroImg/work1.png" alt="E-Snap Project画像2" class="swiper-img" />
+              </div>
+              <!-- 必要に応じてスライドを追加 -->
+            </div>
+            <!-- ナビゲーションボタン -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <!-- ページネーション -->
+            <div class="swiper-pagination"></div>
           </div>
+
+          <!-- モーダル -->
+          <div class="modal" id="imageModal">
+            <span class="close-modal">&times;</span>
+            <div class="modal-content">
+              <img id="modalImage" src="" alt="拡大画像" />
+            </div>
+          </div>
+
+          <div class="work-desc">ゲームの中で本気で写真を撮るプロジェクトのサイトです。写真のあり方を考えるきっかけになればと思い、いままで現実世界で培ってきた写真のスキルと哲学を、ゲーム写真で発揮したらどうなるのか実験しています。<br />Next.jsを使用して、Vercelでホスティングしています。MicroCMSを使用して、コンテンツの管理を行っています。</div>
+          <a href="https://esna.vercel.app/">E-Snap Project</a>
         </div>
       </section>
       <div id="footer-placeholder"></div>
     </div>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="../../js/main.js"></script>
+
+    <!-- スワイパーとモーダルの初期化 -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // スワイパーの初期化
+        const swiper = new Swiper(".mySwiper", {
+          loop: true,
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
+          autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+          },
+          // レスポンシブ設定
+          breakpoints: {
+            320: {
+              slidesPerView: 1,
+              spaceBetween: 10,
+            },
+            768: {
+              slidesPerView: 1,
+              spaceBetween: 20,
+            },
+          },
+        });
+
+        // モーダル表示の処理
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const swiperImages = document.querySelectorAll(".swiper-img");
+        const closeModal = document.querySelector(".close-modal");
+
+        // 各スライド画像にクリックイベントを追加
+        swiperImages.forEach((img) => {
+          img.addEventListener("click", function () {
+            modal.style.display = "flex";
+            modalImg.src = this.src;
+          });
+        });
+
+        // モーダル閉じるボタン
+        closeModal.addEventListener("click", function () {
+          modal.style.display = "none";
+        });
+
+        // モーダル外クリックで閉じる
+        modal.addEventListener("click", function (e) {
+          if (e.target === modal) {
+            modal.style.display = "none";
+          }
+        });
+
+        // ESCキーでモーダルを閉じる
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && modal.style.display === "flex") {
+            modal.style.display = "none";
+          }
+        });
+      });
+    </script>
   </body>
 </html>
