@@ -20,7 +20,7 @@
       <section class="profile">
         <p class="myName">Kichita</p>
         <p>デザイナー, フロントエンドエンジニア, フォトグラファー</p>
-        <img src="../images/profImg.png" alt="profImg" class="profImg" />
+        <img src="../images/profImg.png" alt="profImg" class="profImg" id="profileImage" />
         <p class="profText">WEBデザインとフロントエンド開発を生業としています。</p>
         <p>建築業界でリノベーション設計をしていたこともあります。</p>
       </section>
@@ -66,5 +66,31 @@
       <div id="footer-placeholder"></div>
     </div>
     <script src="../js/main.js"></script>
+    <script>
+      // プロフィール画像のアニメーション処理
+      document.addEventListener('DOMContentLoaded', function() {
+        const profileImage = document.getElementById('profileImage');
+        
+        // クリックイベントを追加
+        profileImage.addEventListener('click', function() {
+          // すでにアニメーション中の場合は何もしない
+          if (profileImage.classList.contains('profImg-animate')) return;
+          
+          // アニメーションクラスを追加
+          profileImage.classList.add('profImg-animate');
+          
+          // アニメーション終了後にクラスを削除
+          setTimeout(function() {
+            profileImage.classList.remove('profImg-animate');
+          }, 700); // アニメーションの持続時間と合わせる
+        });
+
+        // タッチデバイスのサポート
+        profileImage.addEventListener('touchstart', function(e) {
+          e.preventDefault(); // デフォルトのタッチアクションを防止
+          profileImage.click(); // クリックイベントを発生させる
+        });
+      });
+    </script>
   </body>
 </html>
