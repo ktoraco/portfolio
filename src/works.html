@@ -145,5 +145,23 @@
       </section>
       <div id="footer-placeholder"></div>
     </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        // 全ての説明文要素を取得
+        const workDescs = document.querySelectorAll('.work-desc');
+        
+        // 各説明文にクリックイベントを追加
+        workDescs.forEach(desc => {
+          desc.addEventListener('click', function(e) {
+            // リンクのクリックイベントが伝播しないようにする
+            e.stopPropagation();
+            
+            // expandedクラスをトグルして展開/折りたたみ
+            this.classList.toggle('expanded');
+          });
+        });
+      });
+    </script>
   </body>
 </html>

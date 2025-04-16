@@ -365,6 +365,7 @@ body.dark-mode {
   word-break: break-word; /* 長い単語も折り返す */
 }
 
+/* works一覧ページでの説明文（アコーディオン/折りたたみ式） */
 .work-desc {
   display: -webkit-box;
   -webkit-line-clamp: 4; /* 最大4行まで表示 */
@@ -373,6 +374,40 @@ body.dark-mode {
   text-overflow: ellipsis;
   text-align: left;
   word-wrap: break-word; /* 長い単語も折り返す */
+  transition: all 0.3s ease;
+  position: relative;
+  cursor: pointer;
+}
+
+.work-desc:after {
+  content: "もっと見る ↓";
+  display: block;
+  text-align: center;
+  padding-top: 5px;
+  font-size: 12px;
+  color: #ae9afe;
+}
+
+.work-desc.expanded {
+  -webkit-line-clamp: unset;
+  max-height: 1000px; /* 十分大きな値 */
+}
+
+.work-desc.expanded:after {
+  content: "閉じる ↑";
+}
+
+/* works-detailページでの説明文（制限なし） */
+.works-detail .work-desc {
+  -webkit-line-clamp: unset;
+  overflow: visible;
+  text-overflow: unset;
+  display: block;
+  cursor: default;
+}
+
+.works-detail .work-desc:after {
+  display: none;
 }
 
 /* スキルタグのスタイル調整 */
