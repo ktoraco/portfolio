@@ -1,6 +1,6 @@
 
 # Kichita Design Portfolio  
-**私のスキルと作品を空に乗せて紹介します。**  
+**私のスキルと作品を紹介してます。**  
 *A creative portfolio showcasing my skills and projects*
 
 ---
